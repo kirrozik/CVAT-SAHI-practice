@@ -1,0 +1,28 @@
+services:
+  cvat_server:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_annotation:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_export:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_import:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_utils:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_webhooks:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_chunks:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_quality_reports:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  cvat_worker_consensus:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
