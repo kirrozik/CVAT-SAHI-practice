@@ -10,7 +10,7 @@ def init_context(context):
     context.logger.info("Init context...  0%")
     detection_model = AutoDetectionModel.from_pretrained(
         model_type='ultralytics',
-        model_path='yolo11n.pt',
+        model_path='yolo11x.pt',
         confidence_threshold=0.25,
         device="cpu"
     )
@@ -18,7 +18,7 @@ def init_context(context):
     context.logger.info("Init context... 100%")
 
 def handler(context, event):
-    context.logger.info("Run YOLO11n with SAHI (Low RAM)")
+    context.logger.info("Run YOLO11n with SAHI")
     data = event.body
     buf = io.BytesIO(base64.b64decode(data["image"]))
     image = Image.open(buf).convert("RGB")
@@ -28,7 +28,6 @@ def handler(context, event):
     max_size = 1024
     if max(image.size) > max_size:
         image.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
-        context.logger.info(f"Image resized to {image.size} to save RAM")
         
     resized_width, resized_height = image.size
     scale_x = original_width / resized_width
@@ -45,9 +44,7 @@ def handler(context, event):
         slice_height=320,
         slice_width=320,
         overlap_height_ratio=0.1,
-        overlap_width_ratio=0.1,
-        postprocess_match_metric='IOU',
-        postprocess_match_threshold=0.5
+        overlap_width_ratio=0.1
     )
     
     detections = []
