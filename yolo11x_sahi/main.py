@@ -46,7 +46,7 @@ def handler(context, event):
         slice_width=320,
         overlap_height_ratio=0.1,
         overlap_width_ratio=0.1,
-        postprocess_match_metric='GREEDYNMM',
+        postprocess_match_metric='IOU',
         postprocess_match_threshold=0.5
     )
     
